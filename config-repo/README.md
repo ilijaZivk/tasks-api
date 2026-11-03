@@ -1,3 +1,5 @@
+![CI](https://github.com/ilijaZivk/tasks-api-modele/actions/workflows/ci.yml/badge.svg)
+
 # tasks-config : dépôt de configuration (jour 4, GitOps)
 
 Ce dossier est le **modèle** du dépôt de configuration. Au jour 4, vous le copierez dans un
