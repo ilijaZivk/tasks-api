@@ -1,3 +1,6 @@
+def test_voluntary_failure():
+    assert 1 == 2
+
 from app.logic import MAX_TITLE_LENGTH, is_valid_title, normalize_title
 
 
