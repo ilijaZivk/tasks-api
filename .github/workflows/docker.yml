@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - tp3-publication
     tags:
       - 'v*'
   workflow_dispatch:
