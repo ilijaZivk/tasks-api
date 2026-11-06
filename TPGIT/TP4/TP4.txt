@@ -1,0 +1,36 @@
+1.1. À quoi sert un Pod ?
+
+Un Pod est la plus petite unité de Kubernetes. Il contient un ou plusieurs conteneurs qui exécutent l'application. Il permet de faire fonctionner l'application dans le cluster et Kubernetes peut le redémarrer automatiquement en cas de problème.
+
+1.2. À quoi sert un Deployment ?
+
+Un Deployment permet de gérer les Pods et de définir le nombre de réplicas souhaités. Il veille à ce que le nombre de Pods demandé soit toujours disponible et permet de les recréer automatiquement s'ils tombent en panne.
+
+1.3. Pourquoi utiliser un Namespace ?
+
+Un Namespace permet de séparer et d'organiser les ressources dans un cluster Kubernetes. Il permet notamment d'éviter de mélanger les différentes applications et leurs composants. Par exemple, dans ce TP, le namespace `argocd` regroupe tous les Pods nécessaires au fonctionnement d'Argo CD.
+
+2.1. Pourquoi sépare-t-on le dépôt de l'application et le dépôt de configuration ?
+
+Séparer les deux dépôts permet de distinguer le code source de l'application et sa configuration de déploiement Kubernetes. Le dépôt de l'application déclenche la CI pour construire et tester l'image Docker, tandis que le dépôt de configuration indique à Argo CD quelle version doit être déployée dans le cluster. Cela permet également de mieux gérer les droits d'accès : les développeurs peuvent modifier le code de l'application, tandis que les personnes responsables du déploiement contrôlent les changements de configuration.
+
+Observation du TP4-6 :
+
+Lorsque j'ai modifié manuellement le nombre de replicas de 3 à 5 avec la commande kubectl scale, deux Pods supplémentaires ont été créés. Argo CD a détecté cette modification et les a automatiquement supprimés après quelques secondes grâce au mécanisme selfHeal. Le cluster est donc revenu à 3 Pods, conformément à la configuration définie dans le dépôt Git.
+
+3.1. Que signifie selfHeal ?
+
+Le selfHeal permet à Argo CD de détecter automatiquement les modifications manuelles effectuées directement dans le cluster Kubernetes et de les corriger pour rétablir l'état défini dans le dépôt Git. Cela garantit que le cluster reste toujours conforme à la configuration enregistrée dans Git.
+
+3.2. Pourquoi le retour arrière est-il simple en GitOps ?
+
+Le retour arrière est simple en GitOps car toutes les modifications de configuration sont enregistrées dans l'historique Git. Il suffit d'utiliser git revert pour annuler un changement et revenir à une configuration précédente. Argo CD détecte ensuite automatiquement cette modification et rétablit l'état correspondant dans le cluster Kubernetes.
+
+
+
+
+
+
+
+
+
