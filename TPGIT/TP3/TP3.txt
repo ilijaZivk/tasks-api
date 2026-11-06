@@ -1,0 +1,35 @@
+1.1. Quelle est la différence entre une image et un conteneur ?
+
+Une image Docker est un modèle qui contient l'application et toutes ses dépendances. Un conteneur est une instance de cette image qui est exécutée. L'image sert donc à créer des conteneurs.
+
+1.2. À quoi sert le fichier .dockerignore ?
+
+Le fichier .dockerignore permet d'exclure certains fichiers et dossiers lors de la construction de l'image Docker. Il permet de réduire la taille du contexte de construction, d'accélérer le build et d'éviter de copier des fichiers inutiles ou sensibles.
+
+2.1. Que gagne-t-on à décrire le lancement dans un fichier plutôt que dans une longue commande ?
+
+Cela permet de simplifier le lancement de l'application et de centraliser sa configuration dans un seul fichier. On peut facilement retrouver les paramètres comme les ports, les variables d'environnement et la construction de l'image. Cela permet également de partager la configuration avec d'autres développeurs et de lancer l'application de la même manière avec une seule commande.
+
+3.1. Pourquoi build attend-il test ?
+
+Parce que needs: test oblige le job build à attendre la réussite des tests avant de construire et publier l'image Docker.
+
+3.2. Pourquoi éviter le tag latest en production ?
+
+Parce que le tag latest ne permet pas d'identifier précisément la version utilisée. Il peut changer à chaque publication. Les tags précis comme sha-xxxxxxxx permettent de retrouver facilement une version et de revenir à une ancienne image.
+
+4.1. Quel est l'avantage d'une image versionnée par rapport à « le code de ma machine » ?
+
+Une image Docker versionnée permet de retrouver et d'utiliser exactement la même version de l'application sur n'importe quelle machine. Elle garantit un environnement identique, facilite le déploiement et permet de revenir facilement à une ancienne version en cas de problème.
+
+5.1. À quoi sert un test de fumée ?
+
+Un test de fumée permet de vérifier rapidement que l'application fonctionne correctement après son déploiement. Il teste les fonctionnalités essentielles, comme /health et /version, pour s'assurer que l'API démarre et répond correctement.
+
+5.2. Pourquoi demander une approbation humaine avant la production ?
+
+Parce que cela permet de vérifier que tout fonctionne correctement en staging avant de déployer en production. Une validation humaine limite les risques de publier une version défectueuse et permet de garder le contrôle sur les mises en production.
+
+6.1. Pourquoi ne pas exécuter une application en root dans un conteneur ?
+
+Parce qu'un utilisateur root possède des privilèges élevés. Si l'application est compromise, un attaquant pourrait exploiter ces privilèges pour accéder à des fichiers sensibles ou tenter de sortir du conteneur. Utiliser un utilisateur non-root permet donc de limiter les dégâts en cas d'attaque.

@@ -1,0 +1,38 @@
+1. Quelle différence entre un linter (Flake8) et un formateur (Black) ?
+
+La différence entre Flake8 et Black c'est que Flake8 détecte les erreurs et les mauvaises pratiques dans le code, tandis que Black reformate automatiquement le code pour respecter un style uniforme.
+
+2. Pourquoi séparer lint et test en deux jobs ?
+
+Pour identifier plus facilement les erreurs, exécuter les vérifications de façon indépendante et pour faciliter la maintenance de la CI.
+
+
+
+
+
+
+2.1. Pourquoi tester sur plusieurs versions de Python ?
+
+Pour vérifier la compatibilité de l'application avec plusieurs versions de Python et éviter les erreurs liées aux différences entre versions.
+
+2.2. Que gagne-t-on avec le cache ?
+
+Le cache permet de réutiliser les dépendances déjà téléchargées et d'accélérer l'exécution de la CI.
+
+2.3. Un artefact, c'est quoi ?
+
+Un artefact est un fichier généré pendant un workflow, que l'on peut conserver et télécharger depuis GitHub Actions.
+
+3.1. Pourquoi interdire de pousser directement sur main ?
+
+Pour protéger la branche principale, éviter les erreurs et obliger les développeurs à passer par une Pull Request afin de faire vérifier et tester le code avant son intégration.
+
+
+4.1. Pourquoi Git ne peut-il pas résoudre ce conflit seul ?**
+
+Parce que les deux branches ont modifié la même partie du fichier `CHANGELOG.md`. Git ne sait pas quelle modification conserver, donc il nous demande de choisir.
+
+4.2. Qu'est-ce qui a vérifié le code après la résolution ?**
+
+GitHub Actions a vérifié le code automatiquement grâce aux tests CI : le lint et les tests Python sur plusieurs versions (3.11, 3.12 et 3.13).
+
